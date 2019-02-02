@@ -22,7 +22,7 @@ passport.use('google-auth', new GoogleStrategy({
 
 function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
   let socialId = `${profile.provider}Id`;
-  User.findOne({ [`social.${socialId}`]: profile.id , verified: true })
+  User.findOne({ [`social.${socialId}`]: profile.id})
     .then(user => {
       if (user) {
         next(null, user);
