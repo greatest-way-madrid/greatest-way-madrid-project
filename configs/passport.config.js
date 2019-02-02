@@ -17,7 +17,7 @@ passport.deserializeUser((id, next) => {
 passport.use('google-auth', new GoogleStrategy({
   clientID: process.env.GOOGLE_AUTH_CLIENT_ID || 'todo',
   clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET || 'todo',
-  callbackURL: process.env.GOOGLE_AUTH_CB || '/sessions/google/cb',
+  callbackURL: process.env.GOOGLE_AUTH_CB || '/user/google/cb',
 }, authenticateOAuthUser));
 
 function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
