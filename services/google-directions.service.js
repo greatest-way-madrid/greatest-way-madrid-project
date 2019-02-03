@@ -1,9 +1,8 @@
 const googleMaps = require('@google/maps');
 const client = googleMaps.createClient({
-  key: GOOGLE_DIRECTIONS_API_KEY,
+  key: process.env.GOOGLE_DIRECTIONS_API_KEY,
   Promise: Promise
 });
-
 
 module.exports.find = (origin, destination) => {
   const query = {
@@ -26,7 +25,6 @@ module.exports.find = (origin, destination) => {
 
 function parseDrivingResponse(res) {
   return res.json.routes[0].legs.map((leg) => {
-    console.log(leg);
     return {
       origin: {
         address: leg.start_address,
@@ -35,7 +33,9 @@ function parseDrivingResponse(res) {
       destination: {
         address: leg.end_address,
         location: [leg.end_location.lat, leg.end_location.lng]
-      }
+      },
+      distance: leg.distance.text,
+      duration: leg.duration.text
     }
   });
 }
