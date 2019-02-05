@@ -1,111 +1,114 @@
+<h1>Discover what's the best way between two points in Madrid</h1>
+
+<div class="row my-5">
+  <div class="form col-5 m-auto bg-dark">
+    <div class="form-group">
+      <label for="origin"> Origin</label>
+      <input type="textbox" class="form-control" id="origin" placeholder="Calle Mayor, Madrid" value="{{#if originDriving}}{{originDriving}}{{else}}Calle Andres Mellado 50, Madrid{{/if}}">
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination</label>
+      <input type="textbox" class="form-control" id="destination" placeholder="Puerta del Sol, Madrid" value="{{#if destinationDriving}}{{destinationDriving}}{{else}}Calle Arenal 42, Madrid{{/if}}">
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-danger" id="submit">Search</button>
+    </div>
+  </div>
+  <div class="col-6" id="main-map">
+    <div id="map"></div>
+  </div>
+
+</div>
+
+<div class="row my-4">
+  {{#if originDriving}}
+  <div class="card bg-dark col-4 m-auto" id="driving">
+
+    <div class="card-header m-auto">
+      <h2>Driving Route</h2>
+    </div>
+
+    <div class="card-body">
+      <p>Origin: {{ originDriving }}</p>
+      <p>Destination: {{ destinationDriving }}</p>
+      <p>Distance: {{ distanceDriving }} </p>
+      <p>Duration: {{ durationDriving }} </p>
+    </div>
+  </div>
+  {{/if}}
+
+  {{#if originTransit}}
+  <div class="card bg-dark col-4 m-auto" id="transit">
+
+    <div class="card-header m-auto">
+      <h2>Transit Route</h2>
+    </div>
+
+    <div class="card-body">
+      <p>Origin: {{ originTransit }}</p>
+      <p>Destination: {{ destinationTransit }}</p>
+      <p>Distance: {{ distanceTransit }} </p>
+      <p>Duration: {{ durationTransit }} </p>
+    </div>
+  </div>
+  {{/if}}
+
+  {{#if estimatedPriceUber}}
+  <div class="card bg-dark col-4 m-auto" id="uber">
+
+    <div class="card-header m-auto">
+      <h2>UberX Route</h2>
+    </div>
+
+    <div class="card-body">
+      <p>Distance: {{ estimatedDistanceUber }} </p>
+      <p>Trip time: {{ estimatedDurationUber }} </p>
+      <p>ETA: {{ estimatedETAUber }} </p>
+      <p>Estimated price: {{ estimatedPriceUber }} </p>
+    </div>
+
+  </div>
+  {{/if}}
+</div>
+
+<div class="row my-4">
+  {{#if originBicycling}}
+  <div class="card bg-dark col-4 m-auto" id="bicycling">
+
+    <div class="card-header m-auto">
+      <h2>Bicycling Route</h2>
+    </div>
+
+    <div class="card-body">
+      <p>Origin: {{ originBicycling }}</p>
+      <p>Destination: {{ destinationBicycling }}</p>
+      <p>Distance: {{ distanceBicycling }} </p>
+      <p>Duration: {{ durationBicycling }} </p>
+    </div>
+  </div>
+  {{/if}}
+
+  {{#if originWalking}}
+  <div class="card bg-dark col-4 m-auto" id="walking">
+
+    <div class="card-header m-auto">
+      <h2>Walking Route</h2>
+    </div>
+
+    <div class="card-body">
+      <p>Origin: {{ originWalking }}</p>
+      <p>Destination: {{ destinationWalking }}</p>
+      <p>Distance: {{ distanceWalking }} </p>
+      <p>Duration: {{ durationWalking }} </p>
+    </div>
+  </div>
+  {{/if}}
+</div>
+
 <div class="row mb-2">
   <form action="/user/google" method="post" class="col-4 mx-auto">
     <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login with Google</button>
   </form>
-</div>
-
-<div class="form col-6 m-auto">
-  <div class="form-group">
-    <label for="origin">Origin</label>
-    <input type="textbox" class="form-control" id="origin" placeholder="Calle Mayor, Madrid" value="{{#if originDriving}}{{originDriving}}{{else}}Calle Andres Mellado 50, Madrid{{/if}}">
-  </div>
-  <div class="form-group">
-    <label for="destination">Destination</label>
-    <input type="textbox" class="form-control" id="destination" placeholder="Puerta del Sol, Madrid" value="{{#if destinationDriving}}{{destinationDriving}}{{else}}Calle Arenal 42, Madrid{{/if}}">
-  </div>
-  <button type="button" class="btn btn-primary" id="submit">Submit</button>
-</div>
-
-<div class="container col-9" id="main-map">
-  <h3>Map</h3>
-  <div id="map"></div>
-</div>
-
-<div class="row my-4">
-{{#if originDriving}}
-<div class="card bg-light col-5 m-auto" id="driving">
-
-  <div class="card-header m-auto">
-    <h2>Driving Route</h2>
-  </div>
-
-  <div class="card-body">
-    <p>Origin: {{ originDriving }}</p>
-    <p>Destination: {{ destinationDriving }}</p>
-    <p>Distance: {{ distanceDriving }} </p>
-    <p>Duration: {{ durationDriving }} </p>
-  </div>
-</div>
-{{/if}}
-
-{{#if originTransit}}
-<div class="card bg-light col-5 m-auto" id="transit">
-
-  <div class="card-header m-auto">
-    <h2>Transit Route</h2>
-  </div>
-
-  <div class="card-body">
-    <p>Origin: {{ originTransit }}</p>
-    <p>Destination: {{ destinationTransit }}</p>
-    <p>Distance: {{ distanceTransit }} </p>
-    <p>Duration: {{ durationTransit }} </p>
-  </div>
-</div>
-{{/if}}
-</div>
-
-<div class="row my-4">
-{{#if originBicycling}}
-<div class="card bg-light col-5 m-auto" id="bicycling">
-
-  <div class="card-header m-auto">
-    <h2>Bicycling Route</h2>
-  </div>
-
-  <div class="card-body">
-    <p>Origin: {{ originBicycling }}</p>
-    <p>Destination: {{ destinationBicycling }}</p>
-    <p>Distance: {{ distanceBicycling }} </p>
-    <p>Duration: {{ durationBicycling }} </p>
-  </div>
-</div>
-{{/if}}
-
-{{#if originWalking}}
-<div class="card bg-light col-5 m-auto" id="walking">
-
-  <div class="card-header m-auto">
-    <h2>Walking Route</h2>
-  </div>
-
-  <div class="card-body">
-    <p>Origin: {{ originWalking }}</p>
-    <p>Destination: {{ destinationWalking }}</p>
-    <p>Distance: {{ distanceWalking }} </p>
-    <p>Duration: {{ durationWalking }} </p>
-  </div>
-</div>
-{{/if}}
-</div>
-
-<div class="row my-4">
-{{#if estimatedPriceUber}}
-<div class="card bg-light col-5 m-auto" id="uber">
-
-  <div class="card-header m-auto">
-    <h2>UberX Route</h2>
-  </div>
-
-  <div class="card-body">
-    <p>Distance: {{ estimatedDistanceUber }} </p>
-    <p>Duration: {{ estimatedDurationUber }} </p>
-    <p>ETA: {{ estimatedETAUber }} </p>
-    <p>Estimated Price: {{ estimatedPriceUber }} </p>
-  </div>
-
-</div>
-{{/if}}
 </div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -113,7 +116,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=quarterly&key=AIzaSyDyD6rAGh4lTrj28b5TpiZdM7OgtEBpuwU&callback=initMap"></script>
 {{#if originLat}}
 <script>
-    addRoute({{originLat}}, {{originLng}}, {{destinationLat}}, {{destinationLng}}, 'DRIVING');
-    addListeners({{originLat}}, {{originLng}}, {{destinationLat}}, {{destinationLng}});
+  addRoute({{ originLat }}, {{ originLng }}, {{ destinationLat }}, {{ destinationLng }}, 'DRIVING');
+  addListeners({{ originLat }}, {{ originLng }}, {{ destinationLat }}, {{ destinationLng }});
 </script>
 {{/if}}
