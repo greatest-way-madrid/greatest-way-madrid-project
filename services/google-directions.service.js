@@ -19,7 +19,6 @@ module.exports.find = (origin, destination) => {
     const drivingResDirections = parseResponse(drivingRes);
     const bicyclingResDirections = parseResponse(bicyclingRes);
     const walkingResDirections = parseResponse(walkingRes);
-
     return Promise.resolve({
       transit: transitResDirections,
       driving: drivingResDirections,
@@ -40,7 +39,8 @@ function parseResponse(res) {
       location: [res.json.routes[0].legs[0].end_location.lat, res.json.routes[0].legs[0].end_location.lng]
     },
     distance: res.json.routes[0].legs[0].distance.text,
-    duration: res.json.routes[0].legs[0].duration.text
+    duration: res.json.routes[0].legs[0].duration.text,
+    arrivalTime: res.json.routes[0].legs[0].arrival_time
   }
 }
 

@@ -13,7 +13,6 @@ module.exports.printDirections = (req, res, next) => {
     googleDirectionsService.find(origin, destination),
     uberService.getPriceAndTime(origin, destination)
   ]).then(([gRoute, uberRoute]) => {
-
     res.render('index', {
       originLat: origin[0],
       originLng: origin[1],
@@ -30,20 +29,22 @@ module.exports.printDirections = (req, res, next) => {
       distanceTransit: gRoute.transit.distance,
       durationTransit: gRoute.transit.duration,
 
+      estimatedPriceUber: uberRoute.estimatedPrice,
+      estimatedDistanceUber: uberRoute.estimatedDistance,
+      estimatedDurationUber: uberRoute.estimatedDuration,
+      estimatedETAUber: uberRoute.estimatedETA,
+
       originBicycling: gRoute.bicycling.origin.address,
       destinationBicycling: gRoute.bicycling.destination.address,
       distanceBicycling: gRoute.bicycling.distance,
       durationBicycling: gRoute.bicycling.duration,
+      kcalBicycling: (parseInt(gRoute.bicycling.duration.split(" ")[0])*7.5).toFixed(1),
 
       originWalking: gRoute.walking.origin.address,
       destinationWalking: gRoute.walking.destination.address,
       distanceWalking: gRoute.walking.distance,
       durationWalking: gRoute.walking.duration,
-
-      estimatedPriceUber: uberRoute.estimatedPrice,
-      estimatedDistanceUber: uberRoute.estimatedDistance,
-      estimatedDurationUber: uberRoute.estimatedDuration,
-      estimatedETAUber: uberRoute.estimatedETA,
+      kcalWalking: (parseInt(gRoute.walking.duration.split(" ")[0])*4.1).toFixed(1),
     });
   })
     .catch(error => {

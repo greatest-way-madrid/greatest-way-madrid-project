@@ -29,8 +29,6 @@
     </div>
 
     <div class="card-body">
-      <p>Origin: {{ originDriving }}</p>
-      <p>Destination: {{ destinationDriving }}</p>
       <p>Distance: {{ distanceDriving }} </p>
       <p>Duration: {{ durationDriving }} </p>
     </div>
@@ -45,8 +43,6 @@
     </div>
 
     <div class="card-body">
-      <p>Origin: {{ originTransit }}</p>
-      <p>Destination: {{ destinationTransit }}</p>
       <p>Distance: {{ distanceTransit }} </p>
       <p>Duration: {{ durationTransit }} </p>
     </div>
@@ -65,6 +61,7 @@
       <p>Trip time: {{ estimatedDurationUber }} </p>
       <p>ETA: {{ estimatedETAUber }} </p>
       <p>Estimated price: {{ estimatedPriceUber }} </p>
+      <a href="https://m.uber.com/ul/" class="btn btn-light">Uber App</a>
     </div>
 
   </div>
@@ -80,10 +77,9 @@
     </div>
 
     <div class="card-body">
-      <p>Origin: {{ originBicycling }}</p>
-      <p>Destination: {{ destinationBicycling }}</p>
       <p>Distance: {{ distanceBicycling }} </p>
       <p>Duration: {{ durationBicycling }} </p>
+      <p>Burned kcal: {{ kcalBicycling }} </p>
     </div>
   </div>
   {{/if}}
@@ -96,10 +92,9 @@
     </div>
 
     <div class="card-body">
-      <p>Origin: {{ originWalking }}</p>
-      <p>Destination: {{ destinationWalking }}</p>
       <p>Distance: {{ distanceWalking }} </p>
       <p>Duration: {{ durationWalking }} </p>
+      <p>Burned kcal: {{ kcalWalking }} </p>
     </div>
   </div>
   {{/if}}
@@ -112,7 +107,9 @@
 </div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="/javascripts/index.js"></script>
 <script type="text/javascript" src="/javascripts/getLatLong.js"></script>
+<script type="text/javascript" src="/javascripts/getPredictions.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=quarterly&key=AIzaSyDyD6rAGh4lTrj28b5TpiZdM7OgtEBpuwU&callback=initMap"></script>
 {{#if originLat}}
 <script>
