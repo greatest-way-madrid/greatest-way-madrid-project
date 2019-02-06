@@ -56,5 +56,6 @@ label {
 }
 
 .card {
-  height: 300px;
+  height: 280px;
+  margin-bottom: 20px;
 }
