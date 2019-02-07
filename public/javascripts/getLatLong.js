@@ -5,6 +5,12 @@ function initMap() {
     center: { lat: 40.441138, lng: -3.708895 }
   });
   var geocoder = new google.maps.Geocoder();
+
+  var originInput = document.getElementById('origin');
+  var destinationInput = document.getElementById('destination');
+  
+  new google.maps.places.Autocomplete(originInput);
+  new google.maps.places.Autocomplete(destinationInput);
   
   document.getElementById('submit').addEventListener('click', function () {
     geocodeAddress(geocoder, map)

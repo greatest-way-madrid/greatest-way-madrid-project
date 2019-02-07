@@ -49,3 +49,4 @@ function addListeners (originLat, originLng, destinationLat, destinationLng) {
     addRoute(originLat, originLng, destinationLat, destinationLng, 'WALKING');
   });
 }
+

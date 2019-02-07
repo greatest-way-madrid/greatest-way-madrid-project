@@ -4,11 +4,11 @@
   <div class="form col-5 m-auto bg-dark">
     <div class="form-group">
       <label for="origin"> Origin</label>
-      <input type="textbox" class="form-control" id="origin" placeholder="Calle Mayor, Madrid" value="{{#if originDriving}}{{originDriving}}{{else}}Calle Andres Mellado 50, Madrid{{/if}}">
+      <input type="text" class="form-control" id="origin" size="50" placeholder="Calle Mayor, Madrid" value="{{#if originDriving}}{{originDriving}}{{else}} {{/if}}">
     </div>
     <div class="form-group">
       <label for="destination">Destination</label>
-      <input type="textbox" class="form-control" id="destination" placeholder="Puerta del Sol, Madrid" value="{{#if destinationDriving}}{{destinationDriving}}{{else}}Calle Arenal 42, Madrid{{/if}}">
+      <input  type="text" class="form-control" id="destination" size="50" placeholder="Puerta del Sol, Madrid" value="{{#if destinationDriving}}{{destinationDriving}}{{else}} {{/if}}">
     </div>
     <div class="form-group">
       <button type="button" class="btn btn-danger" id="submit">Search</button>
@@ -109,8 +109,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="/javascripts/index.js"></script>
 <script type="text/javascript" src="/javascripts/getLatLong.js"></script>
-<script type="text/javascript" src="/javascripts/getPredictions.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=quarterly&key=AIzaSyDyD6rAGh4lTrj28b5TpiZdM7OgtEBpuwU&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=quarterly&libraries=places&key=AIzaSyDyD6rAGh4lTrj28b5TpiZdM7OgtEBpuwU&callback=initMap"></script>
 {{#if originLat}}
 <script>
   addRoute({{ originLat }}, {{ originLng }}, {{ destinationLat }}, {{ destinationLng }}, 'DRIVING');
