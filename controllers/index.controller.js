@@ -38,16 +38,38 @@ module.exports.printDirections = (req, res, next) => {
       destinationBicycling: gRoute.bicycling.destination.address,
       distanceBicycling: gRoute.bicycling.distance,
       durationBicycling: gRoute.bicycling.duration,
-      kcalBicycling: (parseInt(gRoute.bicycling.duration.split(" ")[0])*7.5).toFixed(1),
+      kcalBicycling: minsToKcalBicycling(gRoute.bicycling.duration),
 
       originWalking: gRoute.walking.origin.address,
       destinationWalking: gRoute.walking.destination.address,
       distanceWalking: gRoute.walking.distance,
       durationWalking: gRoute.walking.duration,
-      kcalWalking: (parseInt(gRoute.walking.duration.split(" ")[0])*4.1).toFixed(1),
+      kcalWalking: minsToKcalWalking(gRoute.walking.duration),
     });
   })
     .catch(error => {
       next(error);
     })
+}
+
+function minsToKcalBicycling (duration) {
+  let mins = 0;
+  if (duration.includes('hour')) {
+    mins = parseInt(duration.split(' ')[0])*60 + parseInt(duration.split(' ')[2]);
+    return mins * 7.5;
+  } else { 
+    mins = parseInt(duration.split(" ")[0]).toFixed(1);
+    return mins * 7.5;
+  }
+}
+
+function minsToKcalWalking (duration) {
+  let mins = 0;
+  if (duration.includes('hour')) {
+    mins = parseInt(duration.split(' ')[0])*60 + parseInt(duration.split(' ')[2]);
+    return mins * 4.1;
+  } else { 
+    mins = parseInt(duration.split(" ")[0]);
+    return (mins * 4.1);
+  }
 }

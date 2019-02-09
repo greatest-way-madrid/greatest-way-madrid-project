@@ -6,5 +6,4 @@ function initialize() {
   new google.maps.places.Autocomplete(destinationInput);
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
 
