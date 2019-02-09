@@ -69,7 +69,7 @@ function minsToKcalWalking (duration) {
     mins = parseInt(duration.split(' ')[0])*60 + parseInt(duration.split(' ')[2]);
     return mins * 4.1;
   } else { 
-    mins = parseInt(duration.split(" ")[0]);
+    mins = parseInt(duration.split(" ")[0]).toFixed(1);
     return (mins * 4.1);
   }
 }
