@@ -27,25 +27,48 @@ function removeRoute() {
   directionsDisplay.setMap(null);
 }
 
+function removeActiveClass() {
+  document.getElementById('driving').classList.remove('bg-danger');
+  document.getElementById('driving').classList.remove('bg-light');
+  document.getElementById('transit').classList.remove('bg-danger');
+  document.getElementById('transit').classList.remove('bg-light');
+  document.getElementById('uber').classList.remove('bg-danger');
+  document.getElementById('uber').classList.remove('bg-light');
+  document.getElementById('bicycling').classList.remove('bg-danger');
+  document.getElementById('bicycling').classList.remove('bg-light');
+  document.getElementById('walking').classList.remove('bg-danger');
+  document.getElementById('walking').classList.remove('bg-light');
+}
+
 function addListeners (originLat, originLng, destinationLat, destinationLng) {
   document.getElementById('driving').addEventListener('click', function () {
+    removeActiveClass();
     removeRoute();
+    this.classList.add('bg-danger');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
   });
   document.getElementById('transit').addEventListener('click', function () {
+    removeActiveClass();
     removeRoute();
+    this.classList.add('bg-danger');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'TRANSIT');
   });
   document.getElementById('uber').addEventListener('click', function () {
     removeRoute();
+    removeActiveClass();
+    this.classList.add('bg-danger');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
   });
   document.getElementById('bicycling').addEventListener('click', function () {
+    removeActiveClass();
     removeRoute();
+    this.classList.add('bg-danger');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'BICYCLING');
   });
   document.getElementById('walking').addEventListener('click', function () {
+    removeActiveClass();
     removeRoute();
+    this.classList.add('bg-danger');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'WALKING');
   });
 }

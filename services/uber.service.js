@@ -14,16 +14,20 @@ module.exports.getPriceAndTime = (origin, destination) => {
     uber.estimates.getPriceForRouteAsync(origin[0], origin[1], destination[0], destination[1]),
     uber.estimates.getETAForLocationAsync(origin[0], origin[1])
   ]).then(results => {
-    return parseResponse(results);
+    const tripInfo = parseResponse(results);
+    return Promise.resolve(tripInfo);
   })
 }
 
 function parseResponse(res) {
   return {
-    estimatedPrice: `${res[0].prices[0].estimate.slice(1)} €`,
-    estimatedDistance: `${((res[0].prices[0].distance) * 1.60934).toFixed(2)} km`,
-    estimatedDuration: `${(res[0].prices[0].duration) / 60} mins`,
-    estimatedETA: `${(res[1].times[0].estimate) / 60} mins`,
+    distance: (parseInt(res[0].prices[0].distance) * 1.60934).toFixed(2),
+    duration: (parseInt((res[0].prices[0].duration) / 60)),
+    kind: 'uber',
+    additional: {
+      price: parseInt(res[0].prices[0].estimate.slice(1)),
+      eta: parseInt((res[1].times[0].estimate) / 60)
+    }
   }
 }
 

@@ -1,16 +1,21 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+
+</nav>
+
 <h1>Discover what's the best way between two points in Madrid</h1>
 
-<div class="row my-5">
-  <div class="form col-5 m-auto bg-dark">
+<div class="row my-4">
+  <div class="form col-5 m-auto bg-info">
     <div class="form-group">
       <label for="origin"> Origin</label>
       <input type="text" class="form-control" id="origin" size="50" placeholder="Calle Mayor, Madrid"
-        value="{{#if originDriving}}{{originDriving}}{{else}} {{/if}}">
+        value="{{#if originLat}}{{originAddress}}{{/if}}">
     </div>
     <div class="form-group">
       <label for="destination">Destination</label>
       <input type="text" class="form-control" id="destination" size="50" placeholder="Puerta del Sol, Madrid"
-        value="{{#if destinationDriving}}{{destinationDriving}}{{else}} {{/if}}">
+        value="{{#if originLat}}{{destinationAddress}}{{/if}}">
     </div>
     <div class="form-group">
       <button type="button" class="btn btn-danger" id="submit">Search</button>
@@ -21,41 +26,20 @@
   </div>
 </div>
 
-<div class="container-fluid row my-2">
-  {{#if originDriving}}
-  <div class="card bg-dark col-4 m-auto" id="driving">
-
-    <div class="card-header m-auto">
-      <h2>Driving Route</h2>
+<div class="container row">
+  {{#each trips as |trip| }}
+    <div class="card col-3" id="{{trip.kind}}">
+      <h3>{{trip.kind}}</h3>
+      <p>{{trip.distance}} km</p>
+      <p>{{trip.duration}} min</p>
     </div>
-
-    <div class="card-body">
-      <p>Distance: {{ distanceDriving }} </p>
-      <p>Duration: {{ durationDriving }} </p>
-    </div>
-  </div>
-  {{/if}}
+  {{/each}}
 </div>
 
-<div class="container-fluid row my-2">
-  {{#if originTransit}}
-  <div class="card bg-dark col-4 m-auto" id="transit">
 
-    <div class="card-header m-auto">
-      <h2>Transit Route</h2>
-    </div>
-
-    <div class="card-body">
-      <p>Distance: {{ distanceTransit }} </p>
-      <p>Duration: {{ durationTransit }} </p>
-    </div>
-  </div>
-  {{/if}}
-</div>
-
-<div class="container-fluid row my-2">
+{{!-- <div class="row my-4 w-100">
   {{#if estimatedPriceUber}}
-  <div class="card bg-dark col-4 m-auto" id="uber">
+  <div class="card bg-light w-100" id="uber">
 
     <div class="card-header m-auto">
       <h2>UberX Route</h2>
@@ -66,54 +50,20 @@
       <p>Trip time: {{ estimatedDurationUber }} </p>
       <p>ETA: {{ estimatedETAUber }} </p>
       <p>Estimated price: {{ estimatedPriceUber }} </p>
-      <a href="https://m.uber.com/ul/" class="btn btn-light">Uber App</a>
+      <a href="https://m.uber.com/ul/" class="btn btn-danger">Uber App</a>
     </div>
 
   </div>
   {{/if}}
-</div>
-
-<div class="container-fluid row my-4">
-  {{#if originBicycling}}
-  <div class="card bg-dark col-4 m-auto" id="bicycling">
-
-    <div class="card-header m-auto">
-      <h2>Bicycling Route</h2>
-    </div>
-
-    <div class="card-body">
-      <p>Distance: {{ distanceBicycling }} </p>
-      <p>Duration: {{ durationBicycling }} </p>
-      <p>Burned kcal: {{ kcalBicycling }} </p>
-    </div>
-  </div>
-  {{/if}}
-</div>
-
-<div class="container-fluid row my-4">
-  {{#if originWalking}}
-  <div class="card bg-dark col-4 m-auto" id="walking">
-
-    <div class="card-header m-auto">
-      <h2>Walking Route</h2>
-    </div>
-
-    <div class="card-body">
-      <p>Distance: {{ distanceWalking }} </p>
-      <p>Duration: {{ durationWalking }} </p>
-      <p>Burned kcal: {{ kcalWalking }} </p>
-    </div>
-  </div>
-  {{/if}}
-</div>
-
+</div> --}}
+{{!-- 
 
 <div class="row">
   <form action="/user/google" method="post" class="col-4 mx-auto">
     <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login with Google</button>
   </form>
 </div>
-</div>
+</div> --}} 
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="/javascripts/index.js"></script>
