@@ -11,30 +11,33 @@
 
 <div class="container-fluid" id="map-full-hd">
   <div id="map"></div>
-  <div class="container-fluid text-center">
+  <div class="container-fluid text-center light-blue">
     <img class="shadow-img" src="images/shadow.png">
   </div>
 </div>
 
-<div class="container" id="orig-and-dest-form">
-
-  <div class="main-form">
-    <input type="text" class="form-control" id="origin" placeholder="Origin"
-      value="{{#if originLat}}{{originAddress}}{{/if}}">
-    <input type="text" class="form-control" id="destination" placeholder="Destination"
-      value="{{#if originLat}}{{destinationAddress}}{{/if}}">
-    <button type="button" class="btn btn-danger" id="submit">Search</button>
+<div class="light-blue" id="orig-and-dest-form">
+  <div class="container">
+    <div class="main-form">
+      <input type="text" class="form-control mx-2" id="origin" placeholder="Origin"
+        value="{{#if originLat}}{{originAddress}}{{/if}}">
+      <input type="text" class="form-control mx-2" id="destination" placeholder="Destination"
+        value="{{#if originLat}}{{destinationAddress}}{{/if}}">
+      <button type="button" class="btn btn-danger mx-2" id="submit">Search</button>
+    </div>
   </div>
-
 </div>
 
 <div class="container" id="card-container-info">
   <div class="card-wrapper">
     {{#each trips as |trip| }}
-    <div class="card col-2" id="{{trip.kind}}">
-      <h3>{{trip.kind}}</h3>
-      <p>{{trip.distance}} km</p>
-      <p>{{trip.duration}} min</p>
+    <div class="card col-3 list-group-flush" id="{{trip.kind}}">
+      <div class="list-group-item">
+        <img src="{{get-img-src trip}}" alt="{{trip.kind}}">
+        <h3>{{trip.kind}}</h3>
+      </div>
+      <p class="list-group-item">Distance: {{trip.distance}} km</p>
+      <p class="list-group-item">Trip duration: {{trip.duration}} min</p>
     </div>
     {{/each}}
   </div>
