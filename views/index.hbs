@@ -1,69 +1,50 @@
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
-
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <h1>Greatest Way</h1>
+    </a>
+    <form action="/user/google" method="post">
+      <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login with Google</button>
+    </form>
+  </div>
 </nav>
 
-<h1>Discover what's the best way between two points in Madrid</h1>
-
-<div class="row my-4">
-  <div class="form col-5 m-auto bg-info">
-    <div class="form-group">
-      <label for="origin"> Origin</label>
-      <input type="text" class="form-control" id="origin" size="50" placeholder="Calle Mayor, Madrid"
-        value="{{#if originLat}}{{originAddress}}{{/if}}">
-    </div>
-    <div class="form-group">
-      <label for="destination">Destination</label>
-      <input type="text" class="form-control" id="destination" size="50" placeholder="Puerta del Sol, Madrid"
-        value="{{#if originLat}}{{destinationAddress}}{{/if}}">
-    </div>
-    <div class="form-group">
-      <button type="button" class="btn btn-danger" id="submit">Search</button>
-    </div>
-  </div>
-  <div class="col-6" id="main-map">
-    <div id="map"></div>
+<div class="container-fluid" id="map-full-hd">
+  <div id="map"></div>
+  <div class="container-fluid text-center">
+    <img class="shadow-img" src="images/shadow.png">
   </div>
 </div>
 
-<div class="container row">
-  {{#each trips as |trip| }}
-    <div class="card col-3" id="{{trip.kind}}">
+<div class="container" id="orig-and-dest-form">
+
+  <div class="main-form">
+    <input type="text" class="form-control" id="origin" placeholder="Origin"
+      value="{{#if originLat}}{{originAddress}}{{/if}}">
+    <input type="text" class="form-control" id="destination" placeholder="Destination"
+      value="{{#if originLat}}{{destinationAddress}}{{/if}}">
+    <button type="button" class="btn btn-danger" id="submit">Search</button>
+  </div>
+
+</div>
+
+<div class="container" id="card-container-info">
+  <div class="card-wrapper">
+    {{#each trips as |trip| }}
+    <div class="card col-2" id="{{trip.kind}}">
       <h3>{{trip.kind}}</h3>
       <p>{{trip.distance}} km</p>
       <p>{{trip.duration}} min</p>
     </div>
-  {{/each}}
-</div>
-
-
-{{!-- <div class="row my-4 w-100">
-  {{#if estimatedPriceUber}}
-  <div class="card bg-light w-100" id="uber">
-
-    <div class="card-header m-auto">
-      <h2>UberX Route</h2>
-    </div>
-
-    <div class="card-body">
-      <p>Distance: {{ estimatedDistanceUber }} </p>
-      <p>Trip time: {{ estimatedDurationUber }} </p>
-      <p>ETA: {{ estimatedETAUber }} </p>
-      <p>Estimated price: {{ estimatedPriceUber }} </p>
-      <a href="https://m.uber.com/ul/" class="btn btn-danger">Uber App</a>
-    </div>
-
+    {{/each}}
   </div>
-  {{/if}}
-</div> --}}
-{{!-- 
-
-<div class="row">
-  <form action="/user/google" method="post" class="col-4 mx-auto">
-    <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login with Google</button>
-  </form>
 </div>
-</div> --}} 
+
+{{!-- <p>Distance: {{ estimatedDistanceUber }} </p>
+  <p>Trip time: {{ estimatedDurationUber }} </p>
+  <p>ETA: {{ estimatedETAUber }} </p>
+  <p>Estimated price: {{ estimatedPriceUber }} </p>
+  <a href="https://m.uber.com/ul/" class="btn btn-danger">Uber App</a> --}}
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="/javascripts/index.js"></script>
