@@ -32,10 +32,10 @@ function parseResponse(res, kind) {
     additional: {}
   }
   if (kind === 'bicycling') {
-    response.additional.kcal = 7.5 * response.duration;
+    response.additional.kcal = (7.5 * response.duration).toFixed(2);
   }
   if (kind === 'walking') {
-    response.additional.kcal = 4.1 * response.duration;
+    response.additional.kcal = (4.1 * response.duration).toFixed(2);
   }
   return response;
 }
@@ -43,7 +43,6 @@ function parseResponse(res, kind) {
 function parseDirections (res) {
   return [res.json.routes[0].legs[0].start_address, res.json.routes[0].legs[0].end_address];
 }
-
 
 function stringToMinutes (str) {
   let mins = 0;

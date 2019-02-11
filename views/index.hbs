@@ -33,11 +33,11 @@
     {{#each trips as |trip| }}
     <div class="card col-3 list-group-flush" id="{{trip.kind}}">
       <div class="list-group-item">
-        <img src="{{get-img-src trip}}" alt="{{trip.kind}}">
-        <h3>{{trip.kind}}</h3>
+        <img src="{{get-img-src trip}}" alt="{{trip.kind}}" data-toggle="tooltip" data-placement="top" title="{{trip.kind}}">
       </div>
       <p class="list-group-item">Distance: {{trip.distance}} km</p>
       <p class="list-group-item">Trip duration: {{trip.duration}} min</p>
+      {{get-additional-info trip}}
     </div>
     {{/each}}
   </div>

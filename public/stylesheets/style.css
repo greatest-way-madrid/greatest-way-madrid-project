@@ -62,5 +62,9 @@ h1 {
 }
 
 .card > img {
-  width: 32px;
+  width: 64px;
+}
+
+.card-active {
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
 }
