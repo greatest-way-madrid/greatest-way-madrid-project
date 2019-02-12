@@ -16,7 +16,7 @@ module.exports.getPriceAndTime = (origin, destination) => {
   ]).then(results => {
     const tripInfo = parseResponse(results);
     return Promise.resolve(tripInfo);
-  })
+  }).catch(error => console.log('Uber API Error'));
 }
 
 function parseResponse(res) {

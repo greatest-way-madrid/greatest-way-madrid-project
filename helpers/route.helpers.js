@@ -5,14 +5,14 @@ module.exports = (hbs) => {
       case 'transit': return '/images/train.png'; break;
       case 'bicycling': return '/images/bicycle.png'; break;
       case 'walking': return '/images/trekking.png'; break;
-      case 'uber': return '/images/car.png'; break;
+      case 'uber': return '/images/uber.png'; break;
     }
   });
   hbs.registerHelper('get-additional-info', (trip) => {
     switch (trip.kind) {
       case 'walking':
       case 'bicycling': return new hbs.SafeString('<p class="list-group-item">Kcal burned: ' + trip.additional.kcal + '</p>');
-      case 'uber': return new hbs.SafeString('<p class="list-group-item">ETA: ' + trip.additional.eta + ' mins</p><p class="list-group-item">Estimated price: ' + trip.additional.price + ' €</p>');
+      case 'uber': return new hbs.SafeString('<p class="list-group-item">ETA: ' + trip.additional.eta + ' mins</p><p class="list-group-item">Estimated price: ' + trip.additional.price + ' €</p><a href="https://m.uber.com/ul/" class="btn btn-danger">Uber App</a>');
     }
   });
 }

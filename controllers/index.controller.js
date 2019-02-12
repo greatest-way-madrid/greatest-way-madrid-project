@@ -1,5 +1,6 @@
 const googleDirectionsService = require('../services/google-directions.service');
 const uberService = require('../services/uber.service');
+const blablacarService = require('../services/blablacar.service');
 
 module.exports.mainController = (req, res, next) => {
   res.render('index');
@@ -8,15 +9,17 @@ module.exports.mainController = (req, res, next) => {
 module.exports.printDirections = (req, res, next) => {
   let origin = req.query.origin.split(',');
   let destination = req.query.destiny.split(',');
-
   Promise.all([
     googleDirectionsService.find(origin, destination),
-    uberService.getPriceAndTime(origin, destination)
+    uberService.getPriceAndTime(origin, destination),
+    blablacarService.getTripInfo(origin, destination)
   ]).then((trips) => {
+    // Google brings 5 elements: 4 trips and 1 directions
+    // 4 trips goes to tripsArr with 1 trip of Uber
     const directions = trips[0][4];
     trips[0].pop();
-    const tripsArr = [...trips[0], trips[1]];
-    tripsArr.filter((trip) => trip !== undefined)
+    let tripsArr = [...trips[0], trips[1], trips[2]];
+    tripsArr = tripsArr.filter((trip) => trip !== undefined)
       .sort((trip1, trip2) => {
         return trip1.duration - trip2.duration
       });

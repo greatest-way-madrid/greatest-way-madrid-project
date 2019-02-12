@@ -52,16 +52,16 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   margin: 1rem 0;
 }
 
 .card {
-  text-align: center;
   margin: 1rem;
 }
 
-.card > img {
+.card img {
+  text-align: center;
   width: 64px;
 }
 
