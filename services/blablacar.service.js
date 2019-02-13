@@ -34,6 +34,7 @@ function parseResponse(res) {
       price: res.data.trips[0].price_with_commission.value,
       model: `${res.data.trips[0].car.make} ${res.data.trips[0].car.model}`,
       link: res.data.trips[0].links._front,
+      departure: (res.data.trips[0].departure_date).slice(0, -3)
     }
   }
 }

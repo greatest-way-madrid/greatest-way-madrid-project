@@ -9,6 +9,7 @@ module.exports.mainController = (req, res, next) => {
 module.exports.printDirections = (req, res, next) => {
   let origin = req.query.origin.split(',');
   let destination = req.query.destiny.split(',');
+  let mode = req.query.mode;
   Promise.all([
     googleDirectionsService.find(origin, destination),
     uberService.getPriceAndTime(origin, destination),
@@ -23,7 +24,23 @@ module.exports.printDirections = (req, res, next) => {
       .sort((trip1, trip2) => {
         return trip1.duration - trip2.duration
       });
-    res.render('index', {
+      if (mode==='shortest') {
+        tripsArr = tripsArr.sort((trip1, trip2) => {
+          return trip1.distance - trip2.distance
+        });
+      }
+      if (mode==='healthiest') {
+        tripsArr = tripsArr.sort((trip1, trip2) => {
+          if (trip1.additional.kcal&&trip2.additional.kcal) {
+            return trip1.additional.kcal - trip2.additional.kcal;
+          } else if (trip1.additional.kcal || trip2.additional.kcal) {
+            return trip1.duration - trip2.duration;
+          } else {
+            return trip1.duration - trip2.duration;
+          }
+        });
+      }
+    res.render('index', { 
       originLat: origin[0],
       originLng: origin[1],
       destinationLat: destination[0],

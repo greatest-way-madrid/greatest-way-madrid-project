@@ -21,6 +21,33 @@ function initMap() {
       })
       .catch(error => console.log(error))
   });
+  document.getElementById('fastest').addEventListener('click', function () {
+    geocodeAddress(geocoder, map)
+      .then(data => {
+        origin = data[0];
+        destination = data[1];
+        window.location = `/directions?origin=${data[0]}&destiny=${data[1]}`;
+      })
+      .catch(error => console.log(error))
+  });
+  document.getElementById('shortest').addEventListener('click', function () {
+    geocodeAddress(geocoder, map)
+      .then(data => {
+        origin = data[0];
+        destination = data[1];
+        window.location = `/directions?origin=${data[0]}&destiny=${data[1]}&mode=shortest`;
+      })
+      .catch(error => console.log(error))
+  });
+  document.getElementById('healthy').addEventListener('click', function () {
+    geocodeAddress(geocoder, map)
+      .then(data => {
+        origin = data[0];
+        destination = data[1];
+        window.location = `/directions?origin=${data[0]}&destiny=${data[1]}&mode=healthiest`;
+      })
+      .catch(error => console.log(error))
+  });
 }
 
 function geocodeAddress(geocoder, resultsMap) {

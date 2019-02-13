@@ -3,40 +3,46 @@
     <a class="navbar-brand" href="/">
       <h1>Greatest Way</h1>
     </a>
+    <div id="orig-and-dest-form">
+      <div class="main-form">
+        <input type="text" class="form-control mx-2" id="origin" placeholder="Origin"
+          value="{{#if originLat}}{{originAddress}}{{/if}}">
+        <input type="text" class="form-control mx-2" id="destination" placeholder="Destination"
+          value="{{#if originLat}}{{destinationAddress}}{{/if}}">
+        <button type="button" class="btn btn-danger mx-2" id="submit">Search</button>
+      </div>
+    </div>
     <form action="/user/google" method="post">
-      <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login with Google</button>
+      <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login</button>
     </form>
   </div>
 </nav>
 
 <div class="container-fluid" id="map-full-hd">
   <div id="map"></div>
-  <div class="container-fluid text-center light-blue">
+  <div class="container-fluid text-center">
     <img class="shadow-img" src="images/shadow.png">
   </div>
 </div>
 
-<div class="light-blue" id="orig-and-dest-form">
-  <div class="container">
-    <div class="main-form">
-      <input type="text" class="form-control mx-2" id="origin" placeholder="Origin"
-        value="{{#if originLat}}{{originAddress}}{{/if}}">
-      <input type="text" class="form-control mx-2" id="destination" placeholder="Destination"
-        value="{{#if originLat}}{{destinationAddress}}{{/if}}">
-      <button type="button" class="btn btn-danger mx-2" id="submit">Search</button>
-    </div>
-  </div>
+{{#if originLat}}
+<div class="container" id="kind-buttons">
+  <button type="button" class="btn btn-danger mx-2" id="fastest">Fastest</button>
+  <button type="button" class="btn btn-danger mx-2" id="shortest">Shortest</button>
+  <button type="button" class="btn btn-danger mx-2" id="healthy">Healthiest</button>
 </div>
+{{/if}}
 
 <div class="container" id="card-container-info">
   <div class="card-wrapper">
     {{#each trips as |trip| }}
     <div class="card col-3 list-group-flush" id="{{trip.kind}}">
       <div class="m-auto">
-        <img src="{{get-img-src trip}}" alt="{{trip.kind}}" data-toggle="tooltip" data-placement="top" title="{{trip.kind}}">
+        <img src="{{get-img-src trip}}" alt="{{trip.kind}}" data-toggle="tooltip" data-placement="top"
+          title="{{trip.kind}}">
       </div>
       <p class="list-group-item">Distance: {{trip.distance}} km</p>
-      <p class="list-group-item">Trip duration: {{trip.duration}} min</p>
+      <p class="list-group-item">Trip duration: {{get-trip-duration trip}}</p>
       {{get-additional-info trip}}
     </div>
     {{/each}}

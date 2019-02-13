@@ -14,7 +14,18 @@ module.exports = (hbs) => {
       case 'walking':
       case 'bicycling': return new hbs.SafeString('<p class="list-group-item">Kcal burned: ' + trip.additional.kcal + '</p>');
       case 'uber': return new hbs.SafeString('<p class="list-group-item">ETA: ' + trip.additional.eta + ' mins</p><p class="list-group-item">Estimated price: ' + trip.additional.price + ' €</p><a href="https://m.uber.com/ul/" class="btn btn-danger">Uber App</a>');
-      case 'blablacar': return new hbs.SafeString('<p class="list-group-item">Estimated price: ' + trip.additional.price + ' €</p><p class="list-group-item">Car model: ' + trip.additional.model + ' </p><a href="' + trip.additional.link + '" class="btn btn-danger">Trip link</a>');
+      case 'blablacar': return new hbs.SafeString('<p class="list-group-item">Departure date: ' + trip.additional.departure + '<p class="list-group-item">Estimated price: ' + trip.additional.price + ' €</p><p class="list-group-item">Car model: ' + trip.additional.model + ' </p><a href="' + trip.additional.link + '" class="btn btn-danger">Trip link</a>');
     }
   });
+  hbs.registerHelper('get-trip-duration', (trip) => {
+    if (trip.duration > 60) {
+      if (trip.duration % 60 === 0) {
+        return `${Math.floor(trip.duration / 60)} h`;
+      } else {
+          return `${Math.floor(trip.duration / 60)} h ${Math.floor(trip.duration % 60)} mins`;
+      }
+    } else {
+        return `${trip.duration} mins`;
+    }
+  })
 }

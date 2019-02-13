@@ -32,10 +32,10 @@ function parseResponse(res, kind) {
     additional: {}
   }
   if (kind === 'bicycling') {
-    response.additional.kcal = (7.5 * response.duration).toFixed(2);
+    response.additional.kcal = Math.round(7.5 * response.duration);
   }
   if (kind === 'walking') {
-    response.additional.kcal = (4.1 * response.duration).toFixed(2);
+    response.additional.kcal = Math.round(4.1 * response.duration);
   }
   return response;
 }
@@ -46,15 +46,18 @@ function parseDirections (res) {
 
 function stringToMinutes (str) {
   let mins = 0;
-  if (str.includes('d')) {
-    mins = parseInt(str.split(' ')[0]*1440 + (str.split(' ')[2])*60);
+  if ((str.includes('d'))&&(str.includes('h'))) {
+    mins = parseInt(str.split(' ')[0]*1440) + parseInt(str.split(' ')[2]*60);
+  } else if (str.includes('d')) {
+    mins = parseInt(str.split(' ')[0]*1440);
+  } else if ((str.includes('h'))&&(str.includes('m'))) {
+      mins = parseInt(str.split(' ')[0]*60) + parseInt(str.split(' ')[2]);
   } else if (str.includes('h')) {
-    mins = parseInt(str.split(' ')[0])*60 + parseInt(str.split(' ')[2]);
-  } else {
-    mins = parseInt(str.split(" ")[0]);
+      mins = parseInt(str.split(' ')[0]*60);
+  } else if (str.includes('m')) {
+    mins = parseInt(str.split(' ')[0]);
   }
   return mins;
-
 }
 
 function stringToKm (str) {
