@@ -46,14 +46,15 @@ function parseDirections (res) {
 
 function stringToMinutes (str) {
   let mins = 0;
-  if (str.includes('hour')) {
+  if (str.includes('d')) {
+    mins = parseInt(str.split(' ')[0]*1440 + (str.split(' ')[2])*60);
+  } else if (str.includes('h')) {
     mins = parseInt(str.split(' ')[0])*60 + parseInt(str.split(' ')[2]);
-  } else if (str.includes('day')) {
-    mins = parseInt(str.split(' ')[0]*1440 + (str.split(' ')[0])*60);
-  } else { 
+  } else {
     mins = parseInt(str.split(" ")[0]);
   }
   return mins;
+
 }
 
 function stringToKm (str) {
