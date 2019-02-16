@@ -10,7 +10,7 @@
 </nav>
 
 
-<div class="background">
+<div {{#if originLat}}hidden{{/if}} class="background">
   <div class="container main-container">
     <div class="main-title">
       <h2>The Greatest Way to move between two locations</h2>
@@ -26,15 +26,15 @@
   </div>
 </div>
 
-{{#if originLat}}
-<div class="container-fluid" id="map-full-hd">
+
+<div {{#if originLat}}{{else}}hidden{{/if}} class="container-fluid" id="map-full-hd">
   <div id="map"></div>
   <div class="container-fluid text-center">
     <img class="shadow-img" src="images/shadow.png">
   </div>
 </div>
 
-
+{{#if originLat}}
 <div class="container" id="kind-buttons">
   <button type="button" class="btn btn-danger mx-2" id="fastest">Fastest</button>
   <button type="button" class="btn btn-danger mx-2" id="shortest">Shortest</button>
