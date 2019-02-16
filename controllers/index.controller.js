@@ -19,28 +19,9 @@ module.exports.printDirections = (req, res, next) => {
     // 4 trips goes to tripsArr with 1 trip of Uber
     const directions = trips[0][4];
     trips[0].pop();
-    let tripsArr = [...trips[0], trips[1], trips[2]];
-    tripsArr = tripsArr.filter((trip) => trip !== undefined)
-      .sort((trip1, trip2) => {
-        return trip1.duration - trip2.duration
-      });
-      if (mode==='shortest') {
-        tripsArr = tripsArr.sort((trip1, trip2) => {
-          return trip1.distance - trip2.distance
-        });
-      }
-      if (mode==='healthiest') {
-        tripsArr = tripsArr.sort((trip1, trip2) => {
-          if (trip1.additional.kcal&&trip2.additional.kcal) {
-            return trip1.additional.kcal - trip2.additional.kcal;
-          } else if (trip1.additional.kcal || trip2.additional.kcal) {
-            return trip1.duration - trip2.duration;
-          } else {
-            return trip1.duration - trip2.duration;
-          }
-        });
-      }
-    res.render('index', { 
+    trips = [...trips[0], trips[1], trips[2]];
+    tripsArr = parseTripsArray(trips, mode);
+    res.render('index', {
       originLat: origin[0],
       originLng: origin[1],
       destinationLat: destination[0],
@@ -53,4 +34,23 @@ module.exports.printDirections = (req, res, next) => {
     .catch(error => {
       next(error);
     })
+}
+
+let parseTripsArray = (trips, mode) => {
+  trips = trips.filter((trip) => trip !== undefined);
+  if (mode === 'fastest') {
+    return trips.sort((trip1, trip2) => {
+      return trip1.duration - trip2.duration
+    });
+  }
+  if (mode === 'shortest') {
+    return trips.sort((trip1, trip2) => {
+      return trip1.distance - trip2.distance
+    });
+  }
+  if (mode === 'healthiest') {
+    return trips.sort((trip1, trip2) => {
+   
+    });
+  }
 }

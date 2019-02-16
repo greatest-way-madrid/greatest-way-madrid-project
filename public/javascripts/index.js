@@ -40,7 +40,7 @@ function removeActiveClass() {
   document.getElementById('walking').classList.remove('card-active');
 }
 
-function addListeners (originLat, originLng, destinationLat, destinationLng) {
+function addCardListeners (originLat, originLng, destinationLat, destinationLng) {
   document.getElementById('driving').addEventListener('click', function () {
     removeActiveClass();
     removeRoute();

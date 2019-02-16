@@ -17,7 +17,7 @@ function initMap() {
       .then(data => {
         origin = data[0];
         destination = data[1];
-        window.location = `/directions?origin=${data[0]}&destiny=${data[1]}`;
+        window.location = `/directions?origin=${data[0]}&destiny=${data[1]}&mode=fastest`;
       })
       .catch(error => console.log(error))
   });
@@ -26,7 +26,7 @@ function initMap() {
       .then(data => {
         origin = data[0];
         destination = data[1];
-        window.location = `/directions?origin=${data[0]}&destiny=${data[1]}`;
+        window.location = `/directions?origin=${data[0]}&destiny=${data[1]}&mode=fastest`;
       })
       .catch(error => console.log(error))
   });
