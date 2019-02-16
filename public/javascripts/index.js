@@ -1,7 +1,11 @@
 function addRoute(originLat, originLng, destinationLat, destinationLng, tripMode) {
 
   window.directionsService = new google.maps.DirectionsService;
-  window.directionsDisplay = new google.maps.DirectionsRenderer;
+  window.directionsDisplay = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+      strokeColor: 'red'
+    }
+  });
 
   const directionRequest = {
     origin: { lat: originLat, lng: originLng},

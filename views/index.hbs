@@ -27,22 +27,24 @@
 </div>
 
 
-<div {{#if originLat}}{{else}}hidden{{/if}} class="container-fluid" id="map-full-hd">
-  <div id="map"></div>
-  <div class="container-fluid text-center">
-    <img class="shadow-img" src="images/shadow.png">
+<div {{#if originLat}}{{else}}hidden{{/if}} class="container-fluid main-info" id="map-full-hd">
+  <div class="row">
+    <div class="card-wrapper">
+      <h3 class="choose">Choose your way</h3>
+    </div>
+    <div id="map"></div>
   </div>
+  {{#if originLat}}
+  <div class="container" id="kind-buttons">
+    <button type="button" class="btn btn-danger mx-2" id="fastest">Fastest</button>
+    <button type="button" class="btn btn-danger mx-2" id="shortest">Shortest</button>
+    <button type="button" class="btn btn-danger mx-2" id="healthy">Healthiest</button>
+  </div>
+  {{/if}}
 </div>
 
-{{#if originLat}}
-<div class="container" id="kind-buttons">
-  <button type="button" class="btn btn-danger mx-2" id="fastest">Fastest</button>
-  <button type="button" class="btn btn-danger mx-2" id="shortest">Shortest</button>
-  <button type="button" class="btn btn-danger mx-2" id="healthy">Healthiest</button>
-</div>
 
-
-<div class="container" id="card-container-info">
+{{!-- <div class="container" id="card-container-info">
   <div class="card-wrapper">
     {{#each trips as |trip| }}
     <div class="card col-3 list-group-flush" id="{{trip.kind}}">
@@ -56,8 +58,7 @@
     </div>
     {{/each}}
   </div>
-</div>
-{{/if}}
+</div> --}}
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="/javascripts/index.js"></script>
