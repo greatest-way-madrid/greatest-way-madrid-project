@@ -37,11 +37,13 @@ function removeActiveClass() {
   document.getElementById('uber').classList.remove('bg-light');
   document.getElementById('bicycling').classList.remove('bg-light');
   document.getElementById('walking').classList.remove('bg-light');
+  document.getElementById('blablacar').classList.remove('bg-light');
   document.getElementById('driving').classList.remove('card-active');
   document.getElementById('transit').classList.remove('card-active');
   document.getElementById('uber').classList.remove('card-active');
   document.getElementById('bicycling').classList.remove('card-active');
   document.getElementById('walking').classList.remove('card-active');
+  document.getElementById('blablacar').classList.remove('card-active');
 }
 
 function addCardListeners (originLat, originLng, destinationLat, destinationLng) {
@@ -74,6 +76,12 @@ function addCardListeners (originLat, originLng, destinationLat, destinationLng)
     removeRoute();
     this.classList.add('card-active');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'WALKING');
+  });
+  document.getElementById('blablacar').addEventListener('click', function () {
+    removeActiveClass();
+    removeRoute();
+    this.classList.add('card-active');
+    addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
   });
 }
 

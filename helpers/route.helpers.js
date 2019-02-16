@@ -28,4 +28,14 @@ module.exports = (hbs) => {
         return `${trip.duration} mins`;
     }
   })
+  hbs.registerHelper('get-src-icon', (trip) => {
+    switch (trip.kind) {
+      case 'driving': return 'fas fa-car'; break;
+      case 'transit': return 'fas fa-subway'; break;
+      case 'bicycling': return 'fas fa-bicycle'; break;
+      case 'walking': return 'fas fa-walking'; break;
+      case 'uber': return 'fas fa-car'; break;
+      case 'blablacar': return 'fas fa-car'; break;
+    }
+  })
 }
