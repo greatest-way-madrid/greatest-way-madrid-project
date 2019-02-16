@@ -50,7 +50,17 @@ let parseTripsArray = (trips, mode) => {
   }
   if (mode === 'healthiest') {
     return trips.sort((trip1, trip2) => {
-   
+      if (trip1.additional.kcal && trip2.additional.kcal) {
+        return trip2.additional.kcal - trip1.additional.kcal;
+      } else if (trip1.kind === 'transit' && !trip2.additional.kcal) {
+        return -1;
+      } else if (trip1.kind === 'uber' && !trip2.additional.kcal) {
+        return -1;
+      } else if (trip1.additional.kcal && !trip2.additional.kcal) {
+        return -1;
+      } else {
+        return 1;
+      }
     });
   }
 }
