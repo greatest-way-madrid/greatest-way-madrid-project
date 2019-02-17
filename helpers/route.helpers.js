@@ -11,10 +11,11 @@ module.exports = (hbs) => {
   });
   hbs.registerHelper('get-additional-info', (trip) => {
     switch (trip.kind) {
-      case 'walking':
-      case 'bicycling': return new hbs.SafeString('<p class="list-group-item">Kcal burned: ' + trip.additional.kcal + '</p>');
-      case 'uber': return new hbs.SafeString('<p class="list-group-item">ETA: ' + trip.additional.eta + ' mins</p><p class="list-group-item">Estimated price: ' + trip.additional.price + ' €</p><a href="https://m.uber.com/ul/" class="btn btn-salmon list-group-item">Uber App</a>');
-      case 'blablacar': return new hbs.SafeString('<p class="list-group-item">Departure date: ' + trip.additional.departure + '<p class="list-group-item">Estimated price: ' + trip.additional.price + ' €</p><p class="list-group-item">Car model: ' + trip.additional.model + ' </p><a href="' + trip.additional.link + '" class="btn btn-salmon list-group-item">Trip link</a>');
+      case 'driving': return new hbs.SafeString('<p class="list-group-item"><i class="fas fa-route"></i> Route by ' + trip.additional.summary + '</p>');
+      case 'walking': return new hbs.SafeString('<p class="list-group-item"><i class="fas fa-route"></i> Route by ' + trip.additional.summary + '</p><p class="list-group-item"><i class="fas fa-fire"></i> Kcal burned: ' + trip.additional.kcal + '</p>');
+      case 'bicycling': return new hbs.SafeString('<p class="list-group-item"><i class="fas fa-route"></i> Route by ' + trip.additional.summary + '</p><p class="list-group-item"><i class="fas fa-fire"></i> Kcal burned: ' + trip.additional.kcal + '</p>');
+      case 'uber': return new hbs.SafeString('<p class="list-group-item"><i class="far fa-hand-paper"></i> ETA: ' + trip.additional.eta + ' mins</p><p class="list-group-item"><i class="fas fa-euro-sign"></i> Estimated price: ' + trip.additional.price + ' €</p><a href="https://m.uber.com/ul/" class="btn btn-salmon list-group-item">Uber App</a>');
+      case 'blablacar': return new hbs.SafeString('<p class="list-group-item"><i class="far fa-clock"> Departure date: ' + trip.additional.departure + '<p class="list-group-item"><i class="fas fa-euro-sign"></i> Estimated price: ' + trip.additional.price + ' €</p><p class="list-group-item"><i class="fas fa-car-side"></i> Car model: ' + trip.additional.model + ' </p><a href="' + trip.additional.link + '" class="btn btn-salmon list-group-item">Trip link</a>');
     }
   });
   hbs.registerHelper('get-trip-duration', (trip) => {

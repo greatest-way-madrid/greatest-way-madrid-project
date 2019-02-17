@@ -31,10 +31,15 @@ function parseResponse(res, kind) {
     kind: kind,
     additional: {}
   }
+  if (kind === 'driving') {
+    response.additional.summary = res.json.routes[0].summary;
+  }
   if (kind === 'bicycling') {
+    response.additional.summary = res.json.routes[0].summary;
     response.additional.kcal = Math.round(7.5 * response.duration);
   }
   if (kind === 'walking') {
+    response.additional.summary = res.json.routes[0].summary;
     response.additional.kcal = Math.round(4.1 * response.duration);
   }
   return response;

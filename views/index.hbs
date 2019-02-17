@@ -44,8 +44,8 @@
     </div>
     <div class="box-info {{trip.kind}}-box list-group-flush">
       <h5 class="list-group-item">{{trip.kind}}</h5>
-      <p class="list-group-item">Distance: {{trip.distance}} km</p>
-      <p class="list-group-item">Trip duration: {{get-trip-duration trip}}</p>
+      <p class="list-group-item"><i class="far fa-compass"></i> Distance: {{trip.distance}} km</p>
+      <p class="list-group-item"><i class="far fa-clock"></i> Trip duration: {{get-trip-duration trip}}</p>
       {{get-additional-info trip}}
     </div>
     {{/each}}
