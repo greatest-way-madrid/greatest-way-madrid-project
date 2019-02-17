@@ -1,5 +1,64 @@
-function addRoute(originLat, originLng, destinationLat, destinationLng, tripMode) {
+const $driving = $('#driving');
+const $transit = $('#transit');
+const $uber = $('#uber');
+const $bicycling = $('#bicycling');
+const $walking = $('#walking');
+const $blablacar = $('#blablacar');
 
+function addCardListeners(originLat, originLng, destinationLat, destinationLng) {
+  $driving.click(function() {
+    removeActiveClass();
+    removeRoute();
+    $(this).addClass('card-active');
+    addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
+  });
+
+  $transit.click(function() {
+    removeActiveClass();
+    removeRoute();
+    $(this).addClass('card-active');
+    addRoute(originLat, originLng, destinationLat, destinationLng, 'TRANSIT');
+  });
+
+  $uber.click(function() {
+    removeActiveClass();
+    removeRoute();
+    $(this).addClass('card-active');
+    addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
+  });
+
+  $bicycling.click(function() {
+    removeActiveClass();
+    removeRoute();
+    $(this).addClass('card-active');
+    addRoute(originLat, originLng, destinationLat, destinationLng, 'BICYCLING');
+  });
+
+  $walking.click(function() {
+    removeActiveClass();
+    removeRoute();
+    $(this).addClass('card-active');
+    addRoute(originLat, originLng, destinationLat, destinationLng, 'WALKING');
+  });
+
+  $blablacar.click(function() {
+    removeActiveClass();
+    removeRoute();
+    $(this).addClass('card-active');
+    addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
+  });
+}
+
+function removeActiveClass() {
+  $('.card-active').removeClass('card-active');
+}
+
+function removeRoute() {
+  directionsDisplay.setMap(null);
+}
+
+function addRoute(originLat, originLng, destinationLat, destinationLng, tripMode) {
+  
   window.directionsService = new google.maps.DirectionsService;
   window.directionsDisplay = new google.maps.DirectionsRenderer({
     polylineOptions: {
@@ -8,13 +67,13 @@ function addRoute(originLat, originLng, destinationLat, destinationLng, tripMode
   });
 
   const directionRequest = {
-    origin: { lat: originLat, lng: originLng},
-    destination: { lat: destinationLat, lng: destinationLng},
+    origin: { lat: originLat, lng: originLng },
+    destination: { lat: destinationLat, lng: destinationLng },
     travelMode: tripMode
   };
   directionsService.route(
     directionRequest,
-    function(response, status) {
+    function (response, status) {
       if (status === 'OK') {
         // everything is ok
         directionsDisplay.setDirections(response);
@@ -26,62 +85,3 @@ function addRoute(originLat, originLng, destinationLat, destinationLng, tripMode
   );
   directionsDisplay.setMap(window.map);
 }
-
-function removeRoute() {
-  directionsDisplay.setMap(null);
-}
-
-function removeActiveClass() {
-  document.getElementById('driving').classList.remove('bg-light');
-  document.getElementById('transit').classList.remove('bg-light');
-  document.getElementById('uber').classList.remove('bg-light');
-  document.getElementById('bicycling').classList.remove('bg-light');
-  document.getElementById('walking').classList.remove('bg-light');
-  document.getElementById('blablacar').classList.remove('bg-light');
-  document.getElementById('driving').classList.remove('card-active');
-  document.getElementById('transit').classList.remove('card-active');
-  document.getElementById('uber').classList.remove('card-active');
-  document.getElementById('bicycling').classList.remove('card-active');
-  document.getElementById('walking').classList.remove('card-active');
-  document.getElementById('blablacar').classList.remove('card-active');
-}
-
-function addCardListeners (originLat, originLng, destinationLat, destinationLng) {
-  document.getElementById('driving').addEventListener('click', function () {
-    removeActiveClass();
-    removeRoute();
-    this.classList.add('card-active');
-    addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
-  });
-  document.getElementById('transit').addEventListener('click', function () {
-    removeActiveClass();
-    removeRoute();
-    this.classList.add('card-active');
-    addRoute(originLat, originLng, destinationLat, destinationLng, 'TRANSIT');
-  });
-  document.getElementById('uber').addEventListener('click', function () {
-    removeRoute();
-    removeActiveClass();
-    this.classList.add('card-active');
-    addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
-  });
-  document.getElementById('bicycling').addEventListener('click', function () {
-    removeActiveClass();
-    removeRoute();
-    this.classList.add('card-active');
-    addRoute(originLat, originLng, destinationLat, destinationLng, 'BICYCLING');
-  });
-  document.getElementById('walking').addEventListener('click', function () {
-    removeActiveClass();
-    removeRoute();
-    this.classList.add('card-active');
-    addRoute(originLat, originLng, destinationLat, destinationLng, 'WALKING');
-  });
-  document.getElementById('blablacar').addEventListener('click', function () {
-    removeActiveClass();
-    removeRoute();
-    this.classList.add('card-active');
-    addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
-  });
-}
-

@@ -1,11 +1,11 @@
 <nav class="navbar">
-    <a class="navbar-brand" href="/">
-      <h1>Greatest Way</h1>
-    </a>
+  <a class="navbar-brand" href="/">
+    <h1>Greatest Way</h1>
+  </a>
 
-    <form action="/user/google" method="post">
-      <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login</button>
-    </form>
+  <form action="/user/google" method="post">
+    <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login</button>
+  </form>
 </nav>
 
 
@@ -26,27 +26,23 @@
 </div>
 
 
-<div {{#if originLat}}{{else}}hidden{{/if}} class="container-fluid main-info" id="map-full-hd">
-  <div class="row">
-    <div class="card-wrapper">
-      {{#each trips as |trip| }}
-      <div class="card m-auto" id="{{trip.kind}}">
-        <div class="trip-info">
-          <i class="{{get-src-icon trip}}"></i>
-        </div>
-      </div>
-      {{/each}}
-      {{#if originLat}}
-      <div id="kind-buttons">
-        <button type="button" class="btn" id="fastest">Fast</button>
-        <button type="button" class="btn" id="shortest">Short</button>
-        <button type="button" class="btn" id="healthy">Healthy</button>
-      </div>
-      {{/if}}
+<div {{#if originLat}}{{else}}hidden{{/if}} class="main-info row">
+  <div class="card-wrapper">
+    {{#each trips as |trip| }}
+    <div class="card m-auto" id="{{trip.kind}}">
+      <i class="{{get-src-icon trip}}"></i>
     </div>
-    <div id="map"></div>
+    {{/each}}
+    <div class="boxUber"></div>
+    <div id="kind-buttons">
+      <ul>
+        <li><button type="button" class="btn-bottom" id="fastest">Fast</button></li>
+        <li><button type="button" class="btn-bottom" id="shortest">Short</button></li>
+        <li><button type="button" class="btn-bottom" id="healthy">Healthy</button></li>
+      </ul>
+    </div>
   </div>
-
+  <div id="map"></div>
 </div>
 
 
@@ -66,6 +62,12 @@
   </div>
 </div> --}}
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+  integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+  integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="/javascripts/index.js"></script>
 <script type="text/javascript" src="/javascripts/getLatLong.js"></script>
