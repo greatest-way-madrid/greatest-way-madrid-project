@@ -119,11 +119,11 @@ h2, h4 {
 
 .card i {
   font-size: 2.5rem;
-  color: #011e29;
+  color: rgba(2,48,66,1);
 }
 
 .card-active {
-  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-image: linear-gradient(to top, #F87060 0%, #ffb199 100%);
 }
 
 #kind-buttons ul {
@@ -140,31 +140,31 @@ h2, h4 {
 
 #kind-buttons button {
   width: 66px;
-  background: rgba(2,48,66,1);
   color: #FFF;
   padding: 10px 0;
   border: none;
 }
 
 #kind-buttons button:hover  {
-  background: rgba(60,200,265);
+  background: #F87060;
 }
 
-#walking:hover + .boxUber{
-  display: block;  
+.btn-bottom {
+  background: rgba(2,48,66,1);
 }
 
-.boxUber {
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  right: 0;
-  display: none;
-  width: 300px;
-  height: 300px;
-  background-color: red;
+.map-form {
+  display: flex;
+  width: 50%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
+.btn-salmon {
+  background: #F87060;
+  color: #FFF;
+}
 
 #map {
   height: 100%;
@@ -172,4 +172,44 @@ h2, h4 {
   position: relative;
   overflow: hidden;
   box-shadow: 0px 6px 20px #011e29;
+}
+
+.box-info {
+  position: fixed;
+  display: none;
+  z-index: 2;
+  top: 10vh;
+  left: 200px;
+  width: 200px;
+  box-shadow: 0px 6px 20px #011e29;
+}
+
+.box-info h5 {
+  font-size: bold;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#driving:hover + .driving-box{
+  display: block;  
+}
+
+#transit:hover + .transit-box{
+  display: block;  
+}
+
+#bicycling:hover + .bicycling-box{
+  display: block;  
+}
+
+#walking:hover + .walking-box{
+  display: block;  
+}
+
+#uber:hover + .uber-box{
+  display: block;  
+}
+
+#blablacar:hover + .blablacar-box{
+  display: block;  
 }

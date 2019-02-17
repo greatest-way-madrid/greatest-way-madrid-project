@@ -125,9 +125,8 @@ function initMap() {
         "featureType": "transit",
         "elementType": "all",
         "stylers": [
-          {
-            "color": "#146474"
-          }
+          { hue: '#d5c18c' },
+          { lightness: 5 }
         ]
       },
       {

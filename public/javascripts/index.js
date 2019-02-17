@@ -49,6 +49,20 @@ function addCardListeners(originLat, originLng, destinationLat, destinationLng) 
   });
 }
 
+function activeKindButton (mode) {
+  if (mode === 'fastest') {
+    $('#fastest').removeClass('btn-bottom').addClass('btn-salmon');
+  }
+  if (mode === 'shortest') {
+    $('#fastest').removeClass('btn-salmon').addClass('btn-bottom');
+    $('#shortest').removeClass('btn-bottom').addClass('btn-salmon');
+  }
+  if (mode === 'healthiest') {
+    $('#fastest').removeClass('btn-salmon').addClass('btn-bottom');
+    $('#healthy').removeClass('btn-bottom').addClass('btn-salmon');
+  }
+}
+
 function removeActiveClass() {
   $('.card-active').removeClass('card-active');
 }
@@ -58,11 +72,11 @@ function removeRoute() {
 }
 
 function addRoute(originLat, originLng, destinationLat, destinationLng, tripMode) {
-  
+
   window.directionsService = new google.maps.DirectionsService;
   window.directionsDisplay = new google.maps.DirectionsRenderer({
     polylineOptions: {
-      strokeColor: 'red'
+      strokeColor: '#F87060'
     }
   });
 

@@ -28,6 +28,7 @@ module.exports.printDirections = (req, res, next) => {
       destinationLng: destination[1],
       originAddress: directions[0],
       destinationAddress: directions[1],
+      tripMode: mode,
       trips: tripsArr
     });
   })

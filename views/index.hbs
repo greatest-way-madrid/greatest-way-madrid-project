@@ -3,6 +3,16 @@
     <h1>Greatest Way</h1>
   </a>
 
+  {{#if originLat}}
+  <div class="map-form">
+    <input type="text" class="form-control mx-2" id="origin" placeholder="Origin"
+      value="{{#if originLat}}{{originAddress}}{{/if}}">
+    <input type="text" class="form-control mx-2" id="destination" placeholder="Destination"
+      value="{{#if originLat}}{{destinationAddress}}{{/if}}">
+    <button type="button" class="btn btn-salmon mx-2" id="submit">Go</button>
+  </div>
+  {{/if}}
+
   <form action="/user/google" method="post">
     <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login</button>
   </form>
@@ -20,7 +30,7 @@
         value="{{#if originLat}}{{originAddress}}{{/if}}">
       <input type="text" class="form-control mx-2" id="destination" placeholder="Destination"
         value="{{#if originLat}}{{destinationAddress}}{{/if}}">
-      <button type="button" class="btn btn-danger mx-2" id="submit">Go</button>
+      <button type="button" class="btn btn-salmon mx-2" id="submit">Go</button>
     </div>
   </div>
 </div>
@@ -32,11 +42,16 @@
     <div class="card m-auto" id="{{trip.kind}}">
       <i class="{{get-src-icon trip}}"></i>
     </div>
+    <div class="box-info {{trip.kind}}-box list-group-flush">
+      <h5 class="list-group-item">{{trip.kind}}</h5>
+      <p class="list-group-item">Distance: {{trip.distance}} km</p>
+      <p class="list-group-item">Trip duration: {{get-trip-duration trip}}</p>
+      {{get-additional-info trip}}
+    </div>
     {{/each}}
-    <div class="boxUber"></div>
     <div id="kind-buttons">
       <ul>
-        <li><button type="button" class="btn-bottom" id="fastest">Fast</button></li>
+        <li><button type="button" class="btn-salmon" id="fastest">Fast</button></li>
         <li><button type="button" class="btn-bottom" id="shortest">Short</button></li>
         <li><button type="button" class="btn-bottom" id="healthy">Healthy</button></li>
       </ul>
@@ -77,5 +92,6 @@
 <script>
   addRoute({{ originLat }}, {{ originLng }}, {{ destinationLat }}, {{ destinationLng }}, 'DRIVING');
   addCardListeners({{ originLat }}, {{ originLng }}, {{ destinationLat }}, {{ destinationLng }});
+  activeKindButton('{{tripMode}}');
 </script>
 {{/if}}
