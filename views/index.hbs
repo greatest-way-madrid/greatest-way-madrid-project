@@ -13,9 +13,12 @@
   </div>
   {{/if}}
 
-  <form action="/user/google" method="post">
-    <button class="btn btn-danger btn-block" type="submit"><i class="fab fa-google"></i> Login</button>
-  </form>
+  {{#if session.name}}
+  {{> greeting}}
+  {{else}}
+  {{> googleLogin}}
+  {{/if}}
+
 </nav>
 
 

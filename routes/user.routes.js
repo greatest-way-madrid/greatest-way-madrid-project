@@ -8,5 +8,6 @@ const authMiddleware = require('../middlewares/auth.middleware');
 router.post('/google', passport.authenticate('google-auth', { scope: ['openid', 'profile', 'email'] }));
 router.get('/:provider/cb', userController.createWithIDPCallback);
 router.get('/profile', authMiddleware.isAuthenticated, userController.profile);
+router.get('/logout', userController.logout);
 
 module.exports = router;
