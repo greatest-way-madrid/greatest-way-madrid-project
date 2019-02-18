@@ -42,12 +42,6 @@
     <div class="card m-auto" id="{{trip.kind}}">
       <i class="{{get-src-icon trip}}"></i>
     </div>
-    <div class="box-info {{trip.kind}}-box list-group-flush">
-      <h5 class="list-group-item">{{trip.kind}}</h5>
-      <p class="list-group-item"><i class="far fa-compass"></i> Distance: {{trip.distance}} km</p>
-      <p class="list-group-item"><i class="far fa-clock"></i> Trip duration: {{get-trip-duration trip}}</p>
-      {{get-additional-info trip}}
-    </div>
     {{/each}}
     <div id="kind-buttons">
       <ul>
@@ -58,24 +52,17 @@
     </div>
   </div>
   <div id="map"></div>
-</div>
-
-
-{{!-- <div class="container" id="card-container-info">
-  <div class="card-wrapper">
+  <div class="box-wrapper mx-auto col-9">
     {{#each trips as |trip| }}
-    <div class="card col-3 list-group-flush" id="{{trip.kind}}">
-      <div class="m-auto">
-        <img src="{{get-img-src trip}}" alt="{{trip.kind}}" data-toggle="tooltip" data-placement="top"
-          title="{{trip.kind}}">
-      </div>
-      <p class="list-group-item">Distance: {{trip.distance}} km</p>
-      <p class="list-group-item">Trip duration: {{get-trip-duration trip}}</p>
+    <div class="box-info box-{{trip.kind}} list-group">
+      <h3 class="list-group-item">{{trip.kind}}</h3>
+      <p class="list-group-item"><i class="far fa-compass"></i> Distance: {{trip.distance}} km</p>
+      <p class="list-group-item"><i class="far fa-clock"></i> Trip Time: {{get-trip-duration trip}}</p>
       {{get-additional-info trip}}
     </div>
     {{/each}}
   </div>
-</div> --}}
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

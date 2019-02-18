@@ -6,11 +6,13 @@ const $walking = $('#walking');
 const $blablacar = $('#blablacar');
 
 function addCardListeners(originLat, originLng, destinationLat, destinationLng) {
+  hideBoxInfo();
   $driving.click(function() {
     removeActiveClass();
     removeRoute();
     $(this).addClass('card-active');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
+    addInfoBox('driving');
   });
 
   $transit.click(function() {
@@ -18,6 +20,7 @@ function addCardListeners(originLat, originLng, destinationLat, destinationLng) 
     removeRoute();
     $(this).addClass('card-active');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'TRANSIT');
+    addInfoBox('transit');
   });
 
   $uber.click(function() {
@@ -25,6 +28,7 @@ function addCardListeners(originLat, originLng, destinationLat, destinationLng) 
     removeRoute();
     $(this).addClass('card-active');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
+    addInfoBox('uber');
   });
 
   $bicycling.click(function() {
@@ -32,6 +36,7 @@ function addCardListeners(originLat, originLng, destinationLat, destinationLng) 
     removeRoute();
     $(this).addClass('card-active');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'BICYCLING');
+    addInfoBox('bicycling');
   });
 
   $walking.click(function() {
@@ -39,6 +44,7 @@ function addCardListeners(originLat, originLng, destinationLat, destinationLng) 
     removeRoute();
     $(this).addClass('card-active');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'WALKING');
+    addInfoBox('walking');
   });
 
   $blablacar.click(function() {
@@ -46,6 +52,7 @@ function addCardListeners(originLat, originLng, destinationLat, destinationLng) 
     removeRoute();
     $(this).addClass('card-active');
     addRoute(originLat, originLng, destinationLat, destinationLng, 'DRIVING');
+    addInfoBox('blablacar');
   });
 }
 
@@ -98,4 +105,19 @@ function addRoute(originLat, originLng, destinationLat, destinationLng, tripMode
     }
   );
   directionsDisplay.setMap(window.map);
+}
+
+function addInfoBox (transport) {
+  switch (transport) {
+    case 'driving': hideBoxInfo(); $('.box-driving').show(); break;
+    case 'transit': hideBoxInfo(); $('.box-transit').show(); break;
+    case 'uber': hideBoxInfo(); $('.box-uber').show(); break;
+    case 'bicycling': hideBoxInfo(); $('.box-bicycling').show(); break;
+    case 'walking': hideBoxInfo(); $('.box-walking').show(); break;
+    case 'blablacar': hideBoxInfo(); $('.box-blablacar').show(); break;
+  }
+}
+
+function hideBoxInfo () {
+  $('.box-info').hide();
 }
