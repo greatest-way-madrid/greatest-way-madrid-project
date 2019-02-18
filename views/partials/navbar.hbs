@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <a class="navbar-brand" href="/">
+    <h1>Greatest Way</h1>
+  </a>
+
+  {{#if originLat}}
+  <div class="map-form">
+    <input type="text" class="form-control mx-2" id="origin" placeholder="Origin"
+      value="{{#if originLat}}{{originAddress}}{{/if}}">
+    <input type="text" class="form-control mx-2" id="destination" placeholder="Destination"
+      value="{{#if originLat}}{{destinationAddress}}{{/if}}">
+    <button type="button" class="btn btn-salmon mx-2" id="submit">Go</button>
+  </div>
+  {{/if}}
+
+  {{#if session.name}}
+  {{> greeting}}
+  {{else}}
+  {{> googleLogin}}
+  {{/if}}
+</nav>
