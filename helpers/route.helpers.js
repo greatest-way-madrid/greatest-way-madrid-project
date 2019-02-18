@@ -29,4 +29,11 @@ module.exports = (hbs) => {
       case 'blablacar': return 'fas fa-shuttle-van'; break;
     }
   })
+  hbs.registerHelper('sort-by', (mode) => {
+    switch (mode) {
+      case 'fastest': return ('Sorted by Trip Time'); break;
+      case 'shortest': return ('Sorted by Distance'); break;
+      case 'healthiest': return ('Sorted by Kcal'); break;
+    }
+  })
 }

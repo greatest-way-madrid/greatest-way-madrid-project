@@ -38,6 +38,7 @@
 
 <div {{#if originLat}}{{else}}hidden{{/if}} class="main-info row">
   <div class="card-wrapper">
+    <h5 class="sorted-title">{{sort-by tripMode}}</h5>
     {{#each trips as |trip| }}
     <div class="card m-auto" id="{{trip.kind}}">
       <i class="{{get-src-icon trip}}"></i>
